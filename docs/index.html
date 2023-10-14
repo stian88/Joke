@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./style.css"> 
+  </head>
+
+<body>
+    <div class="caja-1">
+    <h1> Pagina de Chistes</h1>  
+</div>
+
+    <div class="caja-2">
+        <span class="position">
+        
+    <label for="category">Selecciona la categoria:</label>
+    <select id="category">
+        <option value="Any?">Cualquiera</option>
+        <option value="Programming?">Programacion</option>
+        <option value="Miscellaneous?">Varios</option>
+        <option value="Pun?">Retruecano</option>
+        <option value="Spooky?">Escalofriante</option>
+        <option value="Navidad?">Navidad</option>
+    </select> <br><br> 
+
+    <label for="language">Selecciona la categoria:</label>
+    <select id="language">
+        <option value="lang=en">English</option>
+        <option value="lang=cs">čeština</option>
+        <option value="lang=de">Deutsch</option>
+        <option value="lang=es">Español</option>        
+        <option value="lang=fr">Français</option>
+        <option value="lang=pt">Português</option>
+    </select> <br><br>   
+    
+    <sbr><sbr><label for="blackFlags">Seleccione para incluir en la lista negra:</label>
+      <form  id="blackFlags">
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=nsfw"> nsfw
+        </label>
+        &nbsp;      
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=religious"> religion
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=political"> politica
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=racist"> racista
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=sexista"> sexista
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=explicit"> explicito
+        </label>      
+    </form><sbr><br>
+
+    <label for="type">Selecciona el tipo:</label>
+    <select id="type">
+        <option value="&type=single">single</option>
+        <option value="&type=twopart">twopart</option>
+    </select> 
+    
+    <label for="amount">Selecciona la cantidad:</label>
+    <select id="amount">
+        <option value=" ">1</option>
+        <option value="&amount=2">2</option>
+        <option value="&amount=3">3</option>
+        <option value="&amount=4">4</option>
+        <option value="&amount=5">5</option>
+        <option value="&amount=6">6</option>
+        <option value="&amount=7">7</option>
+    </select><br><br>
+
+   
+    <div class="centrado">        
+    <button id="consultar">Chistes</button>
+</div>
+</div>
+</span>
+</div>     
+
+<div class="centrado">  
+    <div class="caja-3">
+
+    <div id="single"></div>
+    <div id="setup"></div>
+    <div id="delivery"></div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="./public/main.js"></script>   
+
+</html>
