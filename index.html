@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.caja-1 {
+         display: flex;
+         margin: 0em 50%;
+         width: 50%;
+         font-size: x-large
+         
+        }
+        
+
+.caja-2 {
+        position: relative;         
+         width: 700px;   
+         height:300px;
+         border-radius:50%;    
+         border-color: #f12c2c;   
+         background: rgba(0,0,0,0.2);
+         margin: auto; 
+         align-items: flex-start ;
+         color: rgb(255, 255, 255);
+         text-shadow: 1px 1px #000000;
+        }
+
+.caja-3 {
+         background: rgb(137, 206, 168);
+         color: black;
+         text-shadow: 1px 1px #fff;
+        }
+
+body     {            
+        background-color:#088b94;                    
+        }
+        
+.centrado {
+  display: flex;
+  justify-content: center;
+}
+
+.position {
+            left: 45%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+}
+    </style>
+</head>
+
+<body>
+    <div class="caja-1">
+    <h1> Pagina de Chistes</h1>  
+</div>
+
+    <div class="caja-2">
+        <span class="position">
+        
+    <label for="category">Selecciona la categoria:</label>
+    <select id="category">
+        <option value="Any?">Cualquiera</option>
+        <option value="Programming?">Programacion</option>
+        <option value="Miscellaneous?">Varios</option>
+        <option value="Pun?">Retruecano</option>
+        <option value="Spooky?">Escalofriante</option>
+        <option value="Navidad?">Navidad</option>
+    </select> <br><br> 
+
+    <label for="language">Selecciona la categoria:</label>
+    <select id="language">
+        <option value="lang=en">English</option>
+        <option value="lang=cs">čeština</option>
+        <option value="lang=de">Deutsch</option>
+        <option value="lang=es">Español</option>        
+        <option value="lang=fr">Français</option>
+        <option value="lang=pt">Português</option>
+    </select> <br><br>   
+    
+    <sbr><sbr><label for="blackFlags">Seleccione para incluir en la lista negra:</label>
+      <form  id="blackFlags">
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=nsfw"> nsfw
+        </label>
+        &nbsp;      
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=religious"> religion
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=political"> politica
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=racist"> racista
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=sexista"> sexista
+        </label>
+        &nbsp;
+        <label>
+            <input type="checkbox" name="opcion" value="&blacklistFlags=explicit"> explicito
+        </label>      
+    </form><sbr><br>
+
+    <label for="type">Selecciona el tipo:</label>
+    <select id="type">
+        <option value="&type=single">single</option>
+        <option value="&type=twopart">twopart</option>
+    </select> 
+    
+    <label for="amount">Selecciona la cantidad:</label>
+    <select id="amount">
+        <option value=" ">1</option>
+        <option value="&amount=2">2</option>
+        <option value="&amount=3">3</option>
+        <option value="&amount=4">4</option>
+        <option value="&amount=5">5</option>
+        <option value="&amount=6">6</option>
+        <option value="&amount=7">7</option>
+    </select><br><br>
+
+   
+    <div class="centrado">        
+    <button id="consultar">Chistes</button>
+</div>
+</div>
+</span>
+</div>     
+
+<div class="centrado">  
+    <div class="caja-3">
+
+    <div id="single"></div>
+    <div id="setup"></div>
+    <div id="delivery"></div>
+</div>
+</div>
+</body>
+
+   <script>
+     
+     const selectCategory = document.getElementById("category");
+     const selectLanguage = document.getElementById("language");
+     const selectBlackFlags = document.getElementById("blackFlags");
+     const selectType = document.getElementById("type");
+     const selectAmount = document.getElementById("amount");
+     const consultarButton = document.getElementById("consultar");
+     const resultadoSingle= document.getElementById("single");
+     const resultadoSetup = document.getElementById("setup");
+     const resultadoDelivery = document.getElementById("delivery");
+
+            // Manejar el clic en el botón "Consultar API"
+     consultarButton.addEventListener("click", function () {                        
+     const opcionCategory = selectCategory.value;
+     const opcionLanguage = selectLanguage.value;
+     const opcionType = selectType.value
+     const opcionAmount = selectAmount.value
+     
+     const checkboxesBlackFlags = selectBlackFlags.querySelectorAll('input[type="checkbox"]');
+     const opcionBlackFlags = [];
+       
+     checkboxesBlackFlags.forEach(checkbox => {
+        if(checkbox.checked){
+            opcionBlackFlags.push(checkbox.value)
+        }
+     });
+
+     consultarAPI(opcionCategory, opcionLanguage, opcionBlackFlags, opcionType, opcionAmount);
+
+        });
+    
+      const apiUrl = 'https://v2.jokeapi.dev/joke/';
+
+        
+      function consultarAPI(category, language, blackflags, type, amount) {
+          fetch(apiUrl + category + language + blackflags + type + amount)
+             .then(response => {
+                  if (!response.ok) {
+                        throw new Error('La solicitud no fue exitosa');
+                    }
+                    return response.json();
+                })
+             .then(data => {
+                     
+                        resultadoSingle.textContent = JSON.stringify(data.joke);   
+                        console.log(data.joke);                     
+                        resultadoSetup.textContent = JSON.stringify(data.setup);
+                        console.log(data.setup);  
+                        resultadoDelivery.textContent = JSON.stringify( data.delivery);
+                        console.log(data.delivery);  
+                       
+                     
+                    // Hacer algo con los datos recibidos de la API
+                })
+             /*   .catch(error => {
+                    resultadoDiv.textContent = 'Error al consultar la API: ' + error;
+                });*/
+        }
+    </script>
+</html>
