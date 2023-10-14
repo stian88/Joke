@@ -1,0 +1,44 @@
+
+.caja-1 {
+    display: flex;
+    margin: 0em 50%;
+    width: 50%;
+    font-size: x-large
+    
+   }
+   
+
+.caja-2 {
+   position: relative;         
+    width: 700px;   
+    height:300px;
+    border-radius:50%;    
+    border-color: #f12c2c;   
+    background: rgba(0,0,0,0.2);
+    margin: auto; 
+    align-items: flex-start ;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px #000000;
+   }
+
+.caja-3 {
+    background: rgb(137, 206, 168);
+    color: black;
+    text-shadow: 1px 1px #fff;
+   }
+
+body     {            
+   background-color:#088b94;                    
+   }
+   
+.centrado {
+display: flex;
+justify-content: center;
+}
+
+.position {
+       left: 45%;
+       position: absolute;
+       top: 50%;
+       transform: translate(-50%, -50%);
+}
