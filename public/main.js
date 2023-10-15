@@ -9,7 +9,7 @@ const resultadoSingle= document.getElementById("single");
 const resultadoSetup = document.getElementById("setup");
 const resultadoDelivery = document.getElementById("delivery");
 
-       // Manejar el clic en el botón "Consultar API"
+       
 consultarButton.addEventListener("click", function () {                        
 const opcionCategory = selectCategory.value;
 const opcionLanguage = selectLanguage.value;
@@ -47,11 +47,8 @@ consultarAPI(opcionCategory, opcionLanguage, opcionBlackFlags, opcionType, opcio
                    resultadoSetup.textContent = JSON.stringify(data.setup);
                    console.log(data.setup);  
                    resultadoDelivery.textContent = JSON.stringify( data.delivery);
-                   console.log(data.delivery);  
-                  
-                
-               // Hacer algo con los datos recibidos de la API
-           })
+                   console.log(data.delivery);                             
+          })
         /*   .catch(error => {
                resultadoDiv.textContent = 'Error al consultar la API: ' + error;
            });*/
