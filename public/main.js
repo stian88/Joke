@@ -27,7 +27,8 @@ separate(optionAmount);
 
 function separate (Words){
 
-    const separateWords = Words.split(","); 
+    const separateWords = Words.split(",");
+    const optionAmount = separateWords[0];
     const numberWord = parseInt(separateWords[1]);
     
     consultarAPI(optionCategory, optionLanguage, optionBlackFlags, optionType, optionAmount, 
@@ -38,7 +39,7 @@ function separate (Words){
  const apiUrl = 'https://v2.jokeapi.dev/joke/';
 
    
- function consultarAPI(category, language, blackflags, type, amount, numberAmount) {
+ function consultarAPI(category, language, blackflags, type, amount, numberAmount){ 
 
      fetch(apiUrl + category + language + blackflags + type + amount)
         .then(response => {
@@ -48,33 +49,42 @@ function separate (Words){
                return response.json();
            })
         .then(data => { 
-            
-                 if (amount=== " "){
-                    resultSingle.textContent = JSON.stringify(data.joke);
-                    resultSetup.textContent = JSON.stringify(data.setup);
-                    resultDelivery.textContent = JSON.stringify(data.delivery);
-                    console.log(data.joke);  
-                    console.log(data.setup);
-                    console.log(data.delivery);
 
-                 } else {
+            if (amount === " "){ 
+                resultSingle.textContent =JSON.stringify(data.joke);
+                resultSetup.textContent = JSON.stringify(data.setup);
+                resultDelivery.textContent = JSON.stringify(data.delivery);
+                console.log(data.joke);  
+                console.log(data.setup);
+                console.log(data.delivery);
 
-                 if(type === "&type=single"){
-                 
-                 for (let index = 0; index < numberAmount ; index++) {
-                    resultSingle.textContent = JSON.stringify(data.jokes[index].joke);
-                    console.log(data.jokes[index].joke);  
+             } else {
 
-                  } } else {
+             if(type === "&type=single"){
+             
+             for (let index = 0; index < numberAmount ; index++) {
+             /* const singleVar = [];
+                const json = JSON.stringify(data.jokes[index].joke);
+                singleVar.push(json);
+                const arrayComoTexto = singleVar.join (', ');*/
+                resultSingle.textContent = JSON.stringify(data.jokes[index].joke);
+                console.log(data.jokes[index].joke);   
 
-                   for (let index = 0; index < numberAmount; index++) {
-                    resultSetup.textContent = JSON.stringify(data.jokes[index].setup);
-                    resultDelivery.textContent = JSON.stringify(data.jokes[index].delivery);
-                    console.log(data.jokes[index].setup);
-                    console.log(data.jokes[index].delivery);
-                }} 
-         } })
-        /*   .catch(error => {
-               resultadoDiv.textContent = 'Error al consultar la API: ' + error;
-           });*/
-   }
+              } } else {
+
+               for (let index = 0; index < numberAmount; index++) {
+                resultSetup.textContent = JSON.stringify(data.jokes[index].setup);
+                resultDelivery.textContent = JSON.stringify(data.jokes[index].delivery);
+                console.log(data.jokes[index].setup);
+                console.log(data.jokes[index].delivery);
+                 }
+                } 
+               } 
+              })
+              .catch(data => {
+                resultSingle.textContent = 
+                'Error al consultar la API: No jokes were found that match your provided filter(s).';
+            });
+             }
+              
+  
