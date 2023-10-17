@@ -67,9 +67,7 @@ function separate (Words){
                  } else {
     
                  if(types === "&type=single"){
-                   for (let index = 0; index < numbers ; index++) {                
-                    const singleVar = [];
-                    const json = JSON.stringify(data.jokes[index].joke);
+                   for (let index = 0; index < numbers ; index++) { 
                     resultSingle1.innerHTML = JSON.stringify(data.jokes[index].joke);                
                     console.log(data.jokes[index].joke);                      }   
 
