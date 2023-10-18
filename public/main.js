@@ -1,4 +1,4 @@
-
+/*Referencias a los elementos HTML*/
 const selectCategory = document.getElementById("category");
 const selectLanguage = document.getElementById("language");
 const selectBlackFlags = document.getElementById("blackFlags");
@@ -6,11 +6,10 @@ const selectType = document.getElementById("type");
 const selectAmount = document.getElementById("amount");
 const consultarButton = document.getElementById("consultar");
 const resultSingle1= document.getElementById("single1");
-const resultSingle2= document.getElementById("single1");
 const resultSetup = document.getElementById("setup");
 const resultDelivery = document.getElementById("delivery");
 
-       
+/* Escucha el llamado del boton y se capturan las opciones seleccionadas*/       
 consultarButton.addEventListener("click", function () {                        
 const optionCategory = selectCategory.value;
 const optionLanguage = selectLanguage.value;
@@ -24,6 +23,7 @@ checkboxesBlackFlags.forEach(checkbox => {
    }
 });
 
+/*Separa las partes de Amount*/
 separate(optionAmount);
 
 function separate (Words){
@@ -34,12 +34,13 @@ function separate (Words){
     
     consultarAPI(optionCategory, optionLanguage, optionBlackFlags, optionType, optionA, 
                  wordNumber);
-}
+    }
    });
 
+/*URL base a la API*/ 
  const apiUrl = 'https://v2.jokeapi.dev/joke/';
 
-   
+ /*Funcio donde se agregarn a la ruta base los parametros necesarias para el tipo de chiste solicitado y se hace la consulta a la API*/  
  function consultarAPI(category, language, blackflags, type, amount, number){ 
 
      fetch(apiUrl + category + language + blackflags + type + amount)
@@ -54,6 +55,7 @@ function separate (Words){
               })
             }
 
+/*Funcion para imprimir en pantalla los chistes*/
  function viewJokes(data, option, numbers, types){    
 
                     if (option === " "){ 
