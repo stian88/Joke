@@ -5,9 +5,10 @@ const selectBlackFlags = document.getElementById("blackFlags");
 const selectType = document.getElementById("type");
 const selectAmount = document.getElementById("amount");
 const consultarButton = document.getElementById("consultar");
-const resultSingle1= document.getElementById("single1");
+const resultSingle= document.getElementById("single");
 const resultSetup = document.getElementById("setup");
 const resultDelivery = document.getElementById("delivery");
+const resultJokeViewer = document.getElementById("jokeViewer");
 
 /* Escucha el llamado del boton y se capturan las opciones seleccionadas*/       
 consultarButton.addEventListener("click", function () {                        
@@ -59,27 +60,35 @@ function separate (Words){
  function viewJokes(data, option, numbers, types){    
 
                     if (option === " "){ 
-                    resultSingle1.textContent = JSON.stringify(data.joke);
-                    resultSetup.textContent = JSON.stringify(data.setup);
-                    resultDelivery.textContent = JSON.stringify(data.delivery);
-                    console.log(data.joke);  
-                    console.log(data.setup);
-                    console.log(data.delivery);
+                      var newdiv = document.createElement("div");
+                      newdiv.textContent = JSON.stringify(data.joke);
+                      document.getElementById("jokeViewer").appendChild(newdiv);
+
+                      var newdiv = document.createElement("div");                      
+                      newdiv.textContent = JSON.stringify(data.setup);
+                      document.getElementById("jokeViewer").appendChild(newdiv);
+                      var newdiv = document.createElement("div");
+                      newdiv.textContent = JSON.stringify(data.delivery);
+                      document.getElementById("jokeViewer").appendChild(newdiv);
     
                  } else {
     
                  if(types === "&type=single"){
-                   for (let index = 0; index < numbers ; index++) { 
-                    resultSingle1.innerHTML = JSON.stringify(data.jokes[index].joke);                
-                    console.log(data.jokes[index].joke);                      }   
+                   for (let index = 0; index < numbers ; index++) {                    
+                      var newdiv = document.createElement("div");
+                      newdiv.textContent = JSON.stringify(data.jokes[index].joke);
+                      document.getElementById("jokeViewer").appendChild(newdiv); 
+                      }   
 
                   } else {
     
                    for (let index = 0; index < numbers; index++) {
-                    resultSetup.textContent = JSON.stringify(data.jokes[index].setup);
-                    resultDelivery.textContent = JSON.stringify(data.jokes[index].delivery);
-                    console.log(data.jokes[index].setup);
-                    console.log(data.jokes[index].delivery);
+                     var newdiv = document.createElement("div");
+                     newdiv.textContent = JSON.stringify(data.jokes[index].setup);
+                     document.getElementById("jokeViewer").appendChild(newdiv);
+                     var newdiv = document.createElement("div");
+                     newdiv.textContent = JSON.stringify(data.jokes[index].delivery);
+                     document.getElementById("jokeViewer").appendChild(newdiv);
                      }
                     } 
                    } 
